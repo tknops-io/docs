@@ -17,7 +17,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:info@tknops.io"
       }
     ],
     "primary": {
@@ -40,7 +40,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
+      "x": "https://x.com/tknopsio",
       "github": "https://github.com/TknOps-io",
       "linkedin": "https://www.linkedin.com/company/tknops"
     }
