@@ -1,0 +1,54 @@
+---
+title: "Getting Started"
+description: "Add tknOps to your AI application and see your first usage data in under 5 minutes."
+---
+
+## 1. Install the SDK
+
+```
+pip install tknops-llm
+```
+
+## 2. Get your API key
+
+Grab your API key from the [tknOps Dashboard](https://app.tknops.io/settings/api-keys).
+
+## 3. Initialize the client
+
+```
+from tknops_llm.client import AIAnalytics
+
+client = AIAnalytics(api_key="your_api_key_here")
+```
+
+## 4. Track your first request
+
+Add one line after your LLM call:
+
+```
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(model="gpt-4o")
+response = llm.invoke("Hello world!")
+
+# Add this line
+client.track_response(response, user_id="user-123", response_type="langchain")
+```
+
+That's it. Head to your [dashboard](https://app.tknops.io/) to see the tracked request.
+
+---
+
+## What gets tracked
+
+| Metric  | Description                                 |
+| :------ | :------------------------------------------ |
+| Tokens  | Input and output token counts               |
+| Cost    | Calculated automatically from model pricing |
+| Latency | Response time in milliseconds               |
+| User    | Which user made the request                 |
+| Model   | Which model was called                      |
+
+Your prompts and responses are **not collected** by default.
+
+---

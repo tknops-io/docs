@@ -9,7 +9,8 @@
   },
   "navigation": {
     "pages": [
-      "introduction"
+      "introduction",
+      "getting-started"
     ]
   },
   "logo": "/logo/tknops.png",
