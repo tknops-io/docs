@@ -1,0 +1,75 @@
+---
+title: 'SDK Reference'
+description: 'Detailed API reference for the tknOps Python SDK'
+---
+
+# SDK Reference
+
+## `AIAnalytics`
+
+The main client class for interacting with the tknOps service.
+
+### Initialization
+
+```python
+def __init__(self, api_key: str, environment: str = "prod", collect_content: bool = False)
+```
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `api_key` | `str` | **Required** | Your project API Key. |
+| `environment` | `str` | `"prod"` | The environment tag for events (e.g., `prod`, `dev`, `staging`). |
+| `collect_content`| `bool` | `False` | If `True`, prompts and responses will be sent to the server. Default is `False` for privacy. |
+
+### `track_response`
+
+Automatically extracts metrics (token usage, model name, latency) from a response object and sends an event.
+
+```python
+def track_response(
+    self,
+    response: Any,
+    user_id: str,
+    provider: str = "openai",
+    cost_per_1k_input: float = 0.0,
+    cost_per_1k_output: float = 0.0,
+    tags: Optional[List[str]] = None,
+    metadata: Optional[Dict[str, Any]] = None,
+    session_id: Optional[str] = None,
+    prompt: Optional[str] = None,
+    environment: Optional[str] = None,
+    response_type: Optional[str] = None
+)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `response` | `Any` | The response object from OpenAI or LangChain. |
+| `user_id` | `str` | **Required**. A unique identifier for the user who triggered the AI action. |
+| `response_type`| `str` | Specify the type of response object: `"openai"` or `"langchain"`. |
+| `tags` | `List[str]` | Optional list of strings to tag the event (e.g., specific features). |
+| `prompt` | `str` | Optional input text. If provided (and `collect_content=True`), it is stored. |
+
+### `track` (Manual)
+
+Manually track an event if you are using an unsupported provider or want full control.
+
+```python
+def track(
+    self,
+    user_id: str,
+    model: str,
+    provider: str,
+    input_tokens: int = 0,
+    output_tokens: int = 0,
+    cost_usd: float = 0.0,
+    latency_ms: float = 0.0,
+    tags: Optional[List[str]] = None,
+    metadata: Optional[Dict[str, Any]] = None,
+    prompt_text: Optional[str] = None,
+    response_text: Optional[str] = None,
+    ...
+)
+```

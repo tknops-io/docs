@@ -1,28 +1,30 @@
 ---
-title: "Introduction"
-description: "Welcome to tknops - AI token cost management platform"
+title: 'Introduction'
+description: 'Welcome to the tknOps developer documentation'
 ---
 
-# Welcome to tknops
+# Introduction
 
-tknops is an AI token cost management platform that helps you monitor, analyze, and optimize your AI token usage and costs.
+**tknOps** is a comprehensive AI cost and usage analytics platform designed to give you full visibility into your LLM operations. It helps you track costs, monitor usage, and gain insights into user behavior across your AI applications.
 
-## What is tknops?
+## Components
 
-tknops provides comprehensive tools to track and manage your AI token consumption across different models and providers. With tknops, you can:
+The platform consists of three main components that work together:
 
-- **Automatic Usage Tracking**: Capture token usage, cost, and latency with minimal code
-- **Privacy-First**: Prompt and response content are NOT stored by default
-- **Cost Calculation**: Built-in pricing registry for popular models (OpenAI, Anthropic, and more)
-- **Environment Tagging**: Separate analytics for `prod`, `dev`, and `staging` environments
-- **Framework Support**: Works seamlessly with OpenAI and LangChain response objects
+1.  **Python SDK (`tknops-llm`)**: A lightweight library that integrates into your Python application to automatically capture and send usage data (tokens, latency, model info) to the tknOps platform.
+2.  **REST API**: The backend service that receives telemetry data and provides endpoints for programmatic access to analytics and management features.
+3.  **Dashboard**: A web-based interface for visualizing your data, managing projects, and setting up organizations.
 
-### Installation
+## How it Works
 
-Install the SDK using pip:
+1.  **Instrument**: Install the SDK in your AI application and initialize it with an API Key.
+2.  **Track**: Wrap your LLM calls (OpenAI, LangChain, etc.) with the SDK's tracking methods.
+3.  **Analyze**: View real-time dashboards to see cost breakdowns by user, model, and project.
 
-bash
+## Getting Started
 
-```
-pip install tknops-llm
-```
+To get started, we recommend following this path:
+
+1.  **[Onboarding](/dashboard/onboarding)**: Create your account and organization.
+2.  **[Installation](/sdk/installation)**: Install the Python SDK.
+3.  **[Quickstart](/sdk/quickstart)**: Send your first event.

@@ -8,9 +8,36 @@
     "dark": "#15803D"
   },
   "navigation": {
-    "pages": [
-      "introduction",
-      "getting-started"
+    "groups": [
+      {
+        "group": "General",
+        "pages": [
+          "introduction"
+        ]
+      },
+      {
+        "group": "SDK",
+        "pages": [
+          "sdk/installation",
+          "sdk/quickstart",
+          "sdk/reference"
+        ]
+      },
+      {
+        "group": "API Reference",
+        "pages": [
+          "api/authentication",
+          "api/endpoints"
+        ]
+      },
+      {
+        "group": "Dashboard",
+        "pages": [
+          "dashboard/onboarding",
+          "dashboard/projects",
+          "dashboard/analytics"
+        ]
+      }
     ]
   },
   "logo": "/logo/tknops.png",
@@ -24,20 +51,20 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.tknops.io"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
@@ -49,5 +76,8 @@
   "favicon": "/logo/tknops.png",
   "appearance": {
     "default": "light"
-  }
+  },
+  "openapi": [
+    "api-reference/openapi.json"
+  ]
 }
