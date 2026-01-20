@@ -1,0 +1,47 @@
+---
+title: 'Quickstart'
+description: 'Get started with the tknOps SDK in under 5 minutes'
+---
+
+# Quickstart
+
+This guide will show you how to initialize the SDK and track your first LLM response.
+
+## 1. Initialize the Client
+
+First, import the `AIAnalytics` client and initialize it with your API Key. You can find your API Key in the **Project Settings** section of the tknOps Dashboard.
+
+```python
+from tknops_llm.client import AIAnalytics
+
+client = AIAnalytics(
+    api_key="tkn_..." # Replace with your actual API Key
+)
+```
+
+> [!NOTE]
+> For production applications, we recommend storing your API Key in an environment variable and loading it securely.
+
+## 2. Track an OpenAI Response
+
+If you are using the `openai` library or `langchain`, tknOps can automatically extract usage metrics.
+
+```python
+from langchain_openai import ChatOpenAI
+
+# 1. Make your LLM call as usual
+llm = ChatOpenAI(model="gpt-4o")
+response = llm.invoke("Hello, can you help me calculate some costs?")
+
+# 2. Track the response
+client.track_response(
+    response=response,
+    user_id="user_12345",          # Unique identifier for the end-user
+    response_type="langchain",      # tailored extractor for LangChain
+    tags=["onboarding", "test"]    # optional tags for filtering
+)
+```
+
+## 3. Verify in Dashboard
+
+After running the code above, go to your **tknOps Dashboard**. You should see a new event appear in the **Analytics** or **Events** tab within a few seconds.
