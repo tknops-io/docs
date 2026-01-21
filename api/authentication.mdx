@@ -1,0 +1,35 @@
+---
+title: 'Authentication'
+description: 'How to authenticate your API requests'
+---
+
+# Authentication
+
+The tknOps API uses **API Keys** to authenticate requests. You can view and manage your API keys in the **Project Settings** page of the [Dashboard](/dashboard/projects).
+
+## HTTPS Only
+
+All API requests must be made over HTTPS. Calls made over plain HTTP will be redirected or fail.
+
+## Authenticating Requests
+
+To authenticate a request, include your API key in the `X-API-Key` header.
+
+```bash
+curl -X POST https://api.tknops.io/track/ \
+  -H "X-API-Key: tkn_live_..." \
+  -H "Content-Type: application/json" \
+  ...
+```
+
+> [!WARNING]
+> Your API Key carries many privileges, so be sure to keep it secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, etc.
+
+## Handling Errors
+
+If your API key is missing or invalid, the API will return a `403 Forbidden` or `401 Unauthorized` error.
+
+| Code | Description |
+| :--- | :--- |
+| `401` | Content of the API Key header is missing or invalid format. |
+| `403` | The API Key provided is not valid or has been revoked. |

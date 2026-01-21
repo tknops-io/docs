@@ -1,0 +1,73 @@
+---
+title: 'Endpoints'
+description: 'Key API endpoints for tracking and analytics'
+---
+
+# Core Endpoints
+
+The tknOps API is organized around REST. It has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+
+Base URL: `https://api.tknops.io`
+
+## Tracking
+
+### `POST /track/`
+
+Records a new AI usage event. This is the primary endpoint used by the SDKs.
+
+#### Body Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `user_id` | `string` | **Required**. Unique ID for the end-user. |
+| `model_name` | `string` | **Required**. Name of the model used (e.g., `gpt-4`). |
+| `provider` | `string` | **Required**. (e.g., `openai`, `anthropic`). |
+| `input_tokens` | `integer` | Number of tokens in the prompt. |
+| `output_tokens` | `integer` | Number of tokens in the response. |
+| `cost_usd` | `number` | Total cost of the event in USD. |
+| `latency_ms` | `number` | Request latency in milliseconds. |
+
+#### Example Request
+
+```bash
+curl -X POST https://api.tknops.io/track/ \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "user_123",
+    "model_name": "gpt-3.5-turbo",
+    "provider": "openai",
+    "input_tokens": 50,
+    "output_tokens": 120,
+    "cost_usd": 0.00035,
+    "latency_ms": 450
+  }'
+```
+
+## Analytics
+
+### `GET /analytics/stats`
+
+Retrieve aggregated statistics for your project.
+
+#### Query Parameters
+
+- `start_date` (ISO 8601)
+- `end_date` (ISO 8601)
+- `user_id` (Optional filter)
+- `tag` (Optional filter)
+
+### `GET /analytics/grouped`
+
+Get stats grouped by a specific field.
+
+#### Query Parameters
+
+- `group_by`: One of `provider`, `model_name`, `user_id`, `tag`.
+- `start_date` / `end_date`
+
+```bash
+# Get cost usage grouped by Model
+curl -X GET "https://api.tknops.io/analytics/grouped?group_by=model_name" \
+  -H "X-API-Key: YOUR_API_KEY"
+```
